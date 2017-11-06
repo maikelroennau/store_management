@@ -1,4 +1,4 @@
-package br.edu.ulbra.storemanagement;
+package br.edu.ulbra.gestaoloja;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class StoreManagementApplicationTests {
+public class GestaoLojaApplicationTests {
 
 	@Test
 	public void contextLoads() {

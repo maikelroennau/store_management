@@ -1,12 +1,12 @@
-package br.edu.ulbra.storemanagement;
+package br.edu.ulbra.gestaoloja;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class StoreManagementApplication {
+public class GestaoLojaApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(StoreManagementApplication.class, args);
+		SpringApplication.run(GestaoLojaApplication.class, args);
 	}
 }
