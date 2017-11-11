@@ -1,1 +1,2 @@
-insert into user (username, password, name) VALUES ( 'user1', 'user1', 'Usuario 1');
+insert into user (username, password, name) VALUES ( 'maikel.ronnau', 'senha', 'Maikel Ronnau');
+insert into user (username, password, name) VALUES ( 'ronnau.maikel', 'ahnas', 'Ronnau Maikel');

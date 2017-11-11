@@ -76,6 +76,28 @@ public class UserControllerDemo {
         userRepository.save(usuario);
         return new ModelAndView("redirect:/demo/user/?usercreated=true");
     }
+    
+    @GetMapping("/{id}/updatePassword")
+    public ModelAndView updatePasswordView(@PathVariable(name="id") Long id){
+        User usuario = userRepository.findOne(id);
+        UserInput userInput = mapper.map(usuario, UserInput.class);
+        ModelAndView mv = this.userForm(userInput);
+        mv.setViewName("demo/user/updatePassword");
+        return mv;
+    }
+    
+    @PostMapping("/{id}/updatePassword")
+    public ModelAndView updatePassword(@PathVariable(name="id") Long id, UserInput userInput) {
+        User usuario = userRepository.findOne(id);
+        if (userInput.getPassword() != null && userInput.getPassword().length() > 0 && !userInput.getPassword().equals(userInput.getPasswordConfirm())){
+            ModelAndView mv = this.userForm(userInput);
+            mv.addObject("error", "Password don't match!");
+            return mv;
+        }
+        usuario.setPassword(userInput.getPassword());
+        userRepository.save(usuario);
+        return new ModelAndView("redirect:/demo/user/?usercreated=true");
+    }
 
     @GetMapping("/{id}/delete")
     public ModelAndView deleteUserDemo(@PathVariable(name="id") Long id){
