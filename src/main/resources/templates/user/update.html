@@ -11,7 +11,7 @@
                 <span th:text="${error}" /><br />
             </div>
         </div>
-        <form class="form-inline" method="POST" action="#" th:object="${user}" th:action="@{/demo/user/{id}(id=${user.id})}">
+        <form class="form-inline" method="POST" action="#" th:object="${user}" th:action="@{/user/{id}(id=${user.id})}">
             <input type="hidden" th:field="*{id}"/>
             <p><input type="text" class="form-control" placeholder="E-Mail" th:field="*{username}"/></p>
             <p><input type="text" class="form-control" placeholder="Name" th:field="*{name}"/></p>
@@ -20,7 +20,7 @@
                 <input type="password" class="form-control" placeholder="PasswordConfirm" th:field="*{passwordConfirm}"/>
                 <button type="submit" class="btn btn-primary">Atualizar</button>
             </p>
-            <p><a href="/demo/user/?usercreated=true" class="button">Cancelar</a></p>
+            <p><a href="/user/?usercreated=true" class="button">Cancelar</a></p>
         </form>
     </body>
 </html>

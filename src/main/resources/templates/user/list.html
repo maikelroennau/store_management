@@ -6,7 +6,7 @@
     </head>
     <body>
         <div>
-            <a href="/admin/index">Home</a> | <a href="/demo/user/new">New User</a>
+            <a href="/admin/index">Home</a> | <a href="/user/new">New User</a>
         </div>
         <h1>User List</h1>
         <table class="table">
@@ -22,9 +22,9 @@
                     <td th:text="${user.name}"></td>
                     <td th:text="${user.username}"></td>
                     <td th:text="${user.password}"></td>
-                    <td><a th:href="@{ /demo/user/{id}(id=${user.id}) }" class="btn">Editar</a></td>
-                    <td><a th:href="@{ /demo/user/{id}/delete(id=${user.id}) }" class="btn btn-danger">Excluir</a></td>
-                    <td><a th:href="@{ /demo/user/{id}/updatePassword(id=${user.id}) }" class="btn btn-danger">Atualizar senha</a></td>
+                    <td><a th:href="@{ /user/{id}(id=${user.id}) }" class="btn">Editar</a></td>
+                    <td><a th:href="@{ /user/{id}/delete(id=${user.id}) }" class="btn btn-danger">Excluir</a></td>
+                    <td><a th:href="@{ /user/{id}/updatePassword(id=${user.id}) }" class="btn btn-danger">Atualizar senha</a></td>
                 </tr>
             </tbody>
         </table>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>New User</title>
+    </head>
+    <body>
+        <h1>New User</h1>
+        <div th:if="${error}">
+            <div>
+                <span th:text="${error}" /><br />
+            </div>
+        </div>
+        <form class="form-inline" method="POST" th:object="${user}" th:action="@{/user/new}">
+            <input type="text" class="form-control" placeholder="E-Mail" th:field="*{username}"/>
+            <p><input type="text" class="form-control" placeholder="Name" th:field="*{name}"/></p>
+            <p><input type="password" class="form-control" placeholder="Password" th:field="*{password}"/></p>
+            <p>
+                <input type="password" class="form-control" placeholder="PasswordConfirm" th:field="*{passwordConfirm}"/>
+                <button type="submit" class="btn btn-primary">Cadastrar</button>
+            <p><a href="/" class="button">Cancelar</a></p>
+        </p>
+    </form>
+</body>
+</html>

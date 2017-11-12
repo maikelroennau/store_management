@@ -1,4 +1,4 @@
-package br.edu.ulbra.gestaoloja.demos;
+package br.edu.ulbra.gestaoloja.controller;
 
 import br.edu.ulbra.gestaoloja.input.UserInput;
 import br.edu.ulbra.gestaoloja.model.User;
@@ -13,8 +13,8 @@ import java.util.List;
 import java.util.Random;
 
 @Controller
-@RequestMapping("/demo/user")
-public class UserControllerDemo {
+@RequestMapping("/user")
+public class UserController {
 
     @Autowired
     UserRepository userRepository;
@@ -22,15 +22,15 @@ public class UserControllerDemo {
     private ModelMapper mapper = new ModelMapper();
 
     @GetMapping
-    public ModelAndView listUserDemo(){
-        ModelAndView mv = new ModelAndView("demo/user/list");
+    public ModelAndView listUser(){
+        ModelAndView mv = new ModelAndView("user/list");
         List<User> usuarios = (List<User>) userRepository.findAll();
         mv.addObject("users", usuarios);
         return mv;
     }
 
     private ModelAndView userForm(UserInput userInput){
-        ModelAndView mv = new ModelAndView("demo/user/new");
+        ModelAndView mv = new ModelAndView("user/new");
         mv.addObject("user", userInput);
         return mv;
     }
@@ -54,16 +54,16 @@ public class UserControllerDemo {
     }
 
     @GetMapping("/{id}")
-    public ModelAndView viewUserDemo(@PathVariable(name="id") Long id){
+    public ModelAndView viewUser(@PathVariable(name="id") Long id){
         User usuario = userRepository.findOne(id);
         UserInput userInput = mapper.map(usuario, UserInput.class);
         ModelAndView mv = this.userForm(userInput);
-        mv.setViewName("demo/user/update");
+        mv.setViewName("user/update");
         return mv;
     }
 
     @PostMapping("/{id}")
-    public ModelAndView updateUserDemo(@PathVariable(name="id") Long id, UserInput userInput){
+    public ModelAndView updateUser(@PathVariable(name="id") Long id, UserInput userInput){
         User usuario = userRepository.findOne(id);
         if (userInput.getPassword() != null && userInput.getPassword().length() > 0 && !userInput.getPassword().equals(userInput.getPasswordConfirm())){
             ModelAndView mv = this.userForm(userInput);
@@ -74,7 +74,7 @@ public class UserControllerDemo {
         usuario.setPassword(userInput.getPassword());
         usuario.setName(userInput.getName());
         userRepository.save(usuario);
-        return new ModelAndView("redirect:/demo/user/?usercreated=true");
+        return new ModelAndView("redirect:/user/?usercreated=true");
     }
     
     @GetMapping("/{id}/updatePassword")
@@ -82,7 +82,7 @@ public class UserControllerDemo {
         User usuario = userRepository.findOne(id);
         UserInput userInput = mapper.map(usuario, UserInput.class);
         ModelAndView mv = this.userForm(userInput);
-        mv.setViewName("demo/user/updatePassword");
+        mv.setViewName("user/updatePassword");
         return mv;
     }
     
@@ -96,14 +96,14 @@ public class UserControllerDemo {
         }
         usuario.setPassword(userInput.getPassword());
         userRepository.save(usuario);
-        return new ModelAndView("redirect:/demo/user/?usercreated=true");
+        return new ModelAndView("redirect:/user/?usercreated=true");
     }
 
     @GetMapping("/{id}/delete")
-    public ModelAndView deleteUserDemo(@PathVariable(name="id") Long id){
+    public ModelAndView deleteUser(@PathVariable(name="id") Long id){
         User usuario = userRepository.findOne(id);
         userRepository.delete(usuario);
-        return new ModelAndView("redirect:/demo/user/?usercreated=true");
+        return new ModelAndView("redirect:/user/?usercreated=true");
     }
     
     @PostMapping(value="/login")
