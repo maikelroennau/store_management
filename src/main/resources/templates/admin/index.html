@@ -5,10 +5,26 @@
         <title>Title</title>
     </head>
     <body>
-        Admin Home
-
         <p>
-            <a href="index">Produtos</a> | <a href="/user">Usuários</a>
+            <a href="admin/produtos/">Produtos</a> | <a href="/user">Usuários</a>
         </p>
+
+        <p><h1>Admin Home</h1></p>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Imagem</th>
+                    <th>Descrição</th>
+                    <!-- <th>Votos</th> -->
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="product: ${products}">
+                    <td th:text="${product.imagePath}"></td>
+                    <td th:text="${product.description}"></td>
+                </tr>
+            </tbody>
+        </table>
     </body>
 </html>

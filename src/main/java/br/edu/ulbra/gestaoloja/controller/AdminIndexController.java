@@ -34,6 +34,6 @@ public class AdminIndexController {
     
     @PostMapping(value="/login")
     public String login_admin(){
-        return "redirect:index";
+        return "redirect:produtos/";
     }
 }

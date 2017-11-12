@@ -5,7 +5,27 @@
         <title>Title</title>
     </head>
     <body>
-        Listar Produto
-        <a href="/">Sair</a>
+        <div>
+            <a href="/">Sair</a>
+        </div>
+        <p>
+            <h1>Listar Produto</h1>
+        </p>
+        
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Imagem</th>
+                    <th>Descrição</th>
+                    <!-- <th>Votos</th> -->
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="product: ${products}">
+                    <td th:text="${product.imagePath}"></td>
+                    <td th:text="${product.description}"></td>
+                </tr>
+            </tbody>
+        </table>
     </body>
 </html>
