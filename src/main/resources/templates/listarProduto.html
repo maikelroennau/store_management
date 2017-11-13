@@ -22,7 +22,7 @@
             </thead>
             <tbody>
                 <tr th:each="product: ${products}">
-                    <td th:text="${product.imagePath}"></td>
+                    <td><img th:src="@{ /{path} (path=${product.imagePath}) }"></img></td>
                     <td th:text="${product.description}"></td>
                 </tr>
             </tbody>
