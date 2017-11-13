@@ -6,7 +6,7 @@
     </head>
     <body>
         <p>
-            <a href="/admin/produtos/">Produtos</a> | <a href="/user">Usuários</a>
+            <a href="/admin/produtos/">Produtos</a> | <a href="/user">Usuários</a> | <a href="/admin/">Sair</a>
         </p>
 
         <p><h1>Admin Produtos Home</h1></p>
@@ -21,8 +21,10 @@
             </thead>
             <tbody>
                 <tr th:each="product: ${products}">
-                    <td th:text="${product.imagePath}"></td>
+                    <td><a href=""><img th:src="@{ /{path} (path=${product.imagePath}) }"></img></a></td>
                     <td th:text="${product.description}"></td>
+                    <td th:text="${product.id}"></td>
+                    <td><a th:href="@{ /admin/produtos/{id}(id=${product.id}) }" class="btn">Editar</a></td>
                 </tr>
             </tbody>
         </table>

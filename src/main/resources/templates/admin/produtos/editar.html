@@ -5,6 +5,20 @@
         <title>Title</title>
     </head>
     <body>
-        Editar Produto
+        <h1>Editar Produto</h1>
+        <div th:if="${error}">
+            <div>
+                <span th:text="${error}" /><br />
+            </div>
+        </div>
+        <form class="form-inline" method="POST" action="#" th:object="${product}" th:action="@{/admin/produtos/{id}(id=${product.id})}">
+            <input type="hidden" th:field="*{id}"/>
+            <p><input type="text" class="form-control" placeholder="Descrição" th:field="*{description}"/></p>
+            <p>
+                <input type="text" class="form-control" placeholder="Imagem" th:field="*{imagePath}"/>
+                <button type="submit" class="btn btn-primary">Atualizar</button>
+            </p>
+            <p><a href="/admin/produtos/" class="button">Cancelar</a></p>
+        </form>
     </body>
 </html>

@@ -1,5 +1,6 @@
 package br.edu.ulbra.gestaoloja.controller;
 
+import br.edu.ulbra.gestaoloja.input.ProductInput;
 import br.edu.ulbra.gestaoloja.model.Product;
 import br.edu.ulbra.gestaoloja.repository.ProductRepository;
 import java.util.List;
@@ -20,6 +21,7 @@ public class AdminProdutoController {
 
     @GetMapping("/")
     public ModelAndView listarProdutos(){
+        System.out.println("Listing on index");
         ModelAndView mv = new ModelAndView("admin/produtos/index");
         List<Product> produtos = (List<Product>) productRepository.findAll();
         mv.addObject("products", produtos);
@@ -35,14 +37,27 @@ public class AdminProdutoController {
     public String incluirNovoProduto(){
         return "admin/produtos/novo";
     }
+    
+    private ModelAndView productForm(ProductInput productInput){
+        System.out.println("Getting form");
+        ModelAndView mv = new ModelAndView("admin/produtos/novo");
+        mv.addObject("product", productInput);
+        return mv;
+    }
 
     @GetMapping(value="/{produtoId}")
-    public String editarProduto(@PathVariable Integer produtoId){
-        return "admin/produtos/editar";
-    }
+    public ModelAndView editarProduto(@PathVariable(name="produtoId") Long id){
+        System.out.println("editarProduto");
+        Product produto = productRepository.findOne(id);
+        ProductInput productInput = mapper.map(produto, ProductInput.class);
+        ModelAndView mv = this.productForm(productInput);
+        mv.setViewName("admin/produtos/editar");
+        return mv;
+    }   
 
     @PostMapping(value="/{produtoId}")
     public String salvarProduto(@PathVariable Integer produtoId){
+        System.out.println("salvarProduto");
         return "admin/produtos/editar";
     }
 
