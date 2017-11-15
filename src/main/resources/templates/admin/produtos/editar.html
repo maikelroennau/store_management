@@ -11,11 +11,16 @@
                 <span th:text="${error}" /><br />
             </div>
         </div>
-        <form class="form-inline" method="POST" action="#" th:object="${product}" th:action="@{/admin/produtos/{id}(id=${product.id})}">
+        <form class="form-inline" method="POST" action="#" id="product_editing" th:object="${product}" th:action="@{/admin/produtos/{id}(id=${product.id})}">
             <input type="hidden" th:field="*{id}"/>
-            <p><input type="text" class="form-control" placeholder="Descrição" th:field="*{description}"/></p>
+            <p><input type="text" class="form-control" placeholder="Nome" size="85" th:field="*{name}"/></p>
+            
             <p>
-                <input type="text" class="form-control" placeholder="Imagem" th:field="*{imagePath}"/>
+                <textarea name="description" form="product_editing" class="form-control" placeholder="Descrição" th:field="*{description}" rows="4" cols="85" style="word-wrap: break-word; text-align:justify;"></textarea>
+            </p>
+            
+            <p>
+                <input type="text" class="form-control" placeholder="Imagem" size="85" th:field="*{imagePath}"/>
                 <button type="submit" class="btn btn-primary">Atualizar</button>
             </p>
             <p><a href="/admin/produtos/" class="button">Cancelar</a></p>
