@@ -20,10 +20,10 @@ public class AdminIndexController {
 
     @GetMapping("/index")
     public String index(){
-        List<User> usuarios = (List<User>)userRepository.findAll();
-        for(User usuario : usuarios){
-            System.out.println(usuario.getUsername());
-        }
+//        List<User> usuarios = (List<User>)userRepository.findAll();
+//        for(User usuario : usuarios){
+//            System.out.println(usuario.getUsername());
+//        }
         return "admin/index";
     }
 

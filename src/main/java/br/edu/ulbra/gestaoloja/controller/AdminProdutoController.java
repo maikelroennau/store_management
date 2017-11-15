@@ -21,7 +21,6 @@ public class AdminProdutoController {
 
     @GetMapping("/")
     public ModelAndView listarProdutos(){
-        System.out.println("Listing on index");
         ModelAndView mv = new ModelAndView("admin/produtos/index");
         List<Product> produtos = (List<Product>) productRepository.findAll();
         mv.addObject("products", produtos);
@@ -39,7 +38,6 @@ public class AdminProdutoController {
     }
     
     private ModelAndView productForm(ProductInput productInput){
-        System.out.println("Getting form");
         ModelAndView mv = new ModelAndView("admin/produtos/novo");
         mv.addObject("product", productInput);
         return mv;
@@ -47,7 +45,6 @@ public class AdminProdutoController {
 
     @GetMapping(value="/{produtoId}")
     public ModelAndView editarProduto(@PathVariable(name="produtoId") Long id){
-        System.out.println("editarProduto");
         Product produto = productRepository.findOne(id);
         ProductInput productInput = mapper.map(produto, ProductInput.class);
         ModelAndView mv = this.productForm(productInput);
@@ -56,13 +53,18 @@ public class AdminProdutoController {
     }   
 
     @PostMapping(value="/{produtoId}")
-    public String salvarProduto(@PathVariable Integer produtoId){
-        System.out.println("salvarProduto");
-        return "admin/produtos/editar";
+    public ModelAndView salvarProduto(@PathVariable(name="produtoId") Long id, ProductInput productInput){
+        Product product = productRepository.findOne(id);
+        product.setDescription(productInput.getDescription());
+        product.setImagePath(productInput.getImagePath());
+        productRepository.save(product);
+        return new ModelAndView("redirect:/admin/produtos/");
     }
 
-    @DeleteMapping(value="/{produtoId}")
-    public String excluirProduto(@PathVariable Integer produtoId){
-        return "admin/produtos/excluir";
+    @GetMapping(value="/{produtoId}/excluir")
+    public ModelAndView excluirProduto(@PathVariable(name="produtoId") Long id){
+        Product product = productRepository.findOne(id);
+        productRepository.delete(product);
+        return new ModelAndView("redirect:/admin/produtos/");
     }
 }
