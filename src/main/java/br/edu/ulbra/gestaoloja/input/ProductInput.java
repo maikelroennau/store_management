@@ -15,7 +15,7 @@ import java.util.Set;
 public class ProductInput {
     
     private Long id;
-//    private String name;
+    private String name;
     private String description;
     private Set<Comment> comments;
     private String imagePath;
@@ -26,6 +26,14 @@ public class ProductInput {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription() {

@@ -55,6 +55,7 @@ public class AdminProdutoController {
     @PostMapping(value="/{produtoId}")
     public ModelAndView salvarProduto(@PathVariable(name="produtoId") Long id, ProductInput productInput){
         Product product = productRepository.findOne(id);
+        product.setName(productInput.getName());
         product.setDescription(productInput.getDescription());
         product.setImagePath(productInput.getImagePath());
         productRepository.save(product);

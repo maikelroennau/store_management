@@ -1,5 +1,5 @@
 insert into user (username, password, name) VALUES ( 'maikel.ronnau', 'senha', 'Maikel Ronnau');
 insert into user (username, password, name) VALUES ( 'ronnau.maikel', 'ahnas', 'Ronnau Maikel');
 
-insert into product (description, image_path) VALUES ('Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos.', 'images/produto_1.png');
-insert into product (description, image_path) VALUES ('Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos.', 'images/produto_2.png');
+insert into product (name, description, image_path) VALUES ('Caixa','Lorem Ipsum e simplesmente uma simulacao de texto da industria tipografica e de impressos, e vem sendo utilizado desde o seculo XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos.', 'images/produto_1.png');
+insert into product (name, description, image_path) VALUES ('Jornal', 'Lorem Ipsum e simplesmente uma simulacao de texto da industria tipografica e de impressos, e vem sendo utilizado desde o seculo XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos.', 'images/produto_2.png');
