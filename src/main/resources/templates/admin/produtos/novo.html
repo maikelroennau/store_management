@@ -1,10 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <title>Title</title>
-    </head>
-    <body>
-        Novo Produto
-    </body>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Novo Produto</title>
+</head>
+
+<body>
+    <p>
+        <h1>Novo produto</h1>
+    </p>
+
+    <div th:if="${error}">
+        <div>
+            <span th:text="${error}" /><br />
+        </div>
+    </div>
+    <form class="form-inline" method="POST" action="#" id="product_new" th:object="${product}" th:action="@{/admin/produtos/novo}">
+        <input type="hidden" th:field="*{id}" />
+        <p><input type="text" class="form-control" placeholder="Nome" size="85" th:field="*{name}" /></p>
+
+        <p>
+            <textarea name="description" form="product_new" class="form-control" placeholder="Descrição" th:field="*{description}"
+                rows="4" cols="85" style="word-wrap: break-word; text-align:justify;"></textarea>
+        </p>
+
+        <p>
+            <input type="text" class="form-control" placeholder="Imagem" size="85" th:field="*{imagePath}" />
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
+        </p>
+        <p><a href="/admin/produtos/" class="button">Cancelar</a></p>
+    </form>
+</body>
+
 </html>

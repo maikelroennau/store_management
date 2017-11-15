@@ -28,13 +28,15 @@ public class AdminProdutoController {
     }
 
     @GetMapping(value = "/novo")
-    public String dadosNovoProduto(){
-        return "admin/produtos/novo";
+    public ModelAndView dadosNovoProduto(){
+        return this.productForm(new ProductInput());
     }
 
     @PostMapping(value="/novo")
-    public String incluirNovoProduto(){
-        return "admin/produtos/novo";
+    public ModelAndView incluirNovoProduto(ProductInput productInput){
+        Product product = mapper.map(productInput, Product.class);
+        productRepository.save(product);
+        return new ModelAndView("redirect:/admin/produtos/");
     }
     
     private ModelAndView productForm(ProductInput productInput){
