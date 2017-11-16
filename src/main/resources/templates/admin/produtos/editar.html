@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <title>Title</title>
+        <title>Editar Produto</title>
     </head>
     <body>
         <h1>Editar Produto</h1>
@@ -13,15 +13,15 @@
         </div>
         <form class="form-inline" method="POST" action="#" id="product_editing" th:object="${product}" th:action="@{/admin/produtos/{id}(id=${product.id})}">
             <input type="hidden" th:field="*{id}"/>
-            <p><input type="text" class="form-control" placeholder="Nome" size="85" th:field="*{name}"/></p>
+            <p><input type="text" class="form-control" placeholder="Nome" size="84" th:field="*{name}"/></p>
             
             <p>
                 <textarea name="description" form="product_editing" class="form-control" placeholder="Descrição" th:field="*{description}" rows="4" cols="85" style="word-wrap: break-word; text-align:justify;"></textarea>
             </p>
             
             <p>
-                <input type="text" class="form-control" placeholder="Imagem" size="85" th:field="*{imagePath}"/>
-                <button type="submit" class="btn btn-primary">Atualizar</button>
+                <input type="text" class="form-control" placeholder="Imagem" size="84" th:field="*{imagePath}"/>
+                <button type="submit" class="btn btn-primary">Atualizar</button> | <a th:href="@{ /admin/produtos/{id}/comentarios(id=${product.id}) }" class="btn">Ver comentários deste produto</a>
             </p>
             <p><a href="/admin/produtos/" class="button">Cancelar</a></p>
         </form>

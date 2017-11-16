@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Comentários</title>
+</head>
+
+<body>
+    <h1>Comentários</h1>
+    <div th:if="${error}">
+        <div>
+            <span th:text="${error}" /><br />
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Comment</th>
+                <th>Evaluation</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="user_comment: ${product.comments}">
+                <td th:text="${user_comment.user.name}"></td>
+                <td th:text="${user_comment.comment}" style="padding-left: 25px"></td>
+                <td th:text="${user_comment.liked}" style="padding-left: 25px"></td>
+                <td><a th:href="@{ /admin/produtos/{id}/comentarios/excluir(id=${user_comment.id}) }" class="btn btn-danger">Excluir</a></td>
+            </tr>
+        </tbody>
+    </table>
+    <p><a th:href="@{ /admin/produtos/{id}(id=${product.id}) }" class="btn" style="padding-left: 25px">Voltar</a></p>
+</body>
+
+</html>
