@@ -75,7 +75,7 @@ public class ProdutoController {
         
         Product produto = productRepository.findOne(id);
         mv.addObject("product", produto);
-        mv.addObject("new_comment", new CommentInput());
+        mv.addObject("comment", new CommentInput());
         
         Integer positivos = 0;
         
