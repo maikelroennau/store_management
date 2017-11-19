@@ -46,6 +46,36 @@
     <p>
         <h3>Comentários</h3>
     </p>
+    
+    <form class="form-inline" method="POST" action="#" id="comment_new" th:object="${comment}" th:action="@{/produtos/{id}/comentario}">
+        <input type="hidden" th:field="*{id}" />
+        <table>
+            <tr>
+                <td>
+                    <p>
+                        <textarea name="comentario" form="comment_new" class="form-control" placeholder="Comentário" th:field="*{comment}"
+                            rows="4" cols="85" style="word-wrap: break-word; text-align:justify;"></textarea>
+                    </p>
+                </td>
+                
+                <td style="padding-left: 25px">
+                    <p>
+                        <input type="radio" name="comment_status" id="comment_status" value="true" th:checked="*{liked}"/> Gostei
+                        <p>
+                            <input type="radio" name="comment_status" id="comment_status_2" value="false" th:checked="*{liked}"/> Não gostei
+                        </p>
+                        
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    <button type="submit" class="btn btn-primary">Commentar</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+    
     <table class="table">
         <thead>
             <tr>

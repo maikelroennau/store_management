@@ -1,5 +1,7 @@
 package br.edu.ulbra.gestaoloja.controller;
 
+import br.edu.ulbra.gestaoloja.input.CommentInput;
+import br.edu.ulbra.gestaoloja.input.ProductInput;
 import br.edu.ulbra.gestaoloja.model.Comment;
 import br.edu.ulbra.gestaoloja.model.Product;
 import br.edu.ulbra.gestaoloja.repository.CommentRepository;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 @RequestMapping("/produtos")
@@ -67,11 +70,12 @@ public class ProdutoController {
     
     
     @GetMapping("/{produtoId}")
-    public ModelAndView listarProduto(@PathVariable(name="produtoId") Long id) {
+    public ModelAndView detalharProduto(@PathVariable(name="produtoId") Long id) {
         ModelAndView mv = new ModelAndView("detalhesProduto");
         
         Product produto = productRepository.findOne(id);
         mv.addObject("product", produto);
+        mv.addObject("new_comment", new CommentInput());
         
         Integer positivos = 0;
         
@@ -86,5 +90,12 @@ public class ProdutoController {
         mv.addObject("positivos", positivos);
         mv.addObject("negativos", (Integer)(produto.getComments().size() - positivos));
         return mv;
+    }
+    
+    @PostMapping("/{produtoID}/comentario")
+    public ModelAndView incluirComentario(CommentInput commentInput) {
+        Comment comment = mapper.map(commentInput, Comment.class);
+        commentRepository.save(comment);
+        return new ModelAndView("redirect:/produtos/");
     }
 }
