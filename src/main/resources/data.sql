@@ -7,5 +7,4 @@ insert into product (name, description, image_path) VALUES ('Jornal', 'Lorem Ips
 insert into comment (comment, date_time, liked, product_id, user_id) VALUES ('Muito bom.', '2017-11-15 20:32:17', true, 1, 1);
 
 insert into comment (comment, date_time, liked, product_id, user_id) VALUES ('Sensacional!', '2017-11-15 20:32:17', true, 1, 2);
-insert into comment (comment, date_time, liked, product_id, user_id) VALUES ('Produto e muito bom.', '2017-11-15 20:32:17', true, 2, 2);
-
+insert into comment (comment, date_time, liked, product_id, user_id) VALUES ('Baixa qualidade', '2017-11-15 20:32:17', false, 2, 2);

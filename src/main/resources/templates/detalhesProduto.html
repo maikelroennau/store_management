@@ -20,7 +20,7 @@
                 <th>Imagem</th>
                 <th>Nome</th>
                 <th>Descrição</th>
-                <th>Votos</th>
+                <th>Avaliações</th>
             </tr>
         </thead>
         <tbody>
@@ -33,7 +33,12 @@
 
                 <td th:text="${product.description}" style="word-wrap: break-word; max-width: 500px; text-align:justify; padding-left: 25px"></td>
 
-                <td style="padding-left: 25px">Votos</td>
+                <td style="padding-left: 35px">
+                    <div th:text="'Positivas: ' + ${positivos}"></div>
+                    <p>
+                        <div th:text="'Negativas: ' + ${negativos}"></div>
+                    </p>
+                </td>
             </tr>
         </tbody>
     </table>
@@ -53,7 +58,8 @@
             <tr th:each="user_comment: ${product.comments}">
                 <td th:text="${user_comment.user.name}"></td>
                 <td th:text="${user_comment.comment}" style="padding-left: 25px"></td>
-                <td th:text="${user_comment.liked}" style="padding-left: 25px"></td>
+                <td th:if="${user_comment.liked}" style="padding-left: 25px">Positiva</td>
+                <td th:if="${!user_comment.liked}" style="padding-left: 25px">Negativa</td>
             </tr>
         </tbody>
     </table>

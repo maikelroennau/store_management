@@ -2,14 +2,14 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <title>Title</title>
+        <title>Produtos</title>
     </head>
     <body>
         <div>
             <a href="/">Sair</a>
         </div>
         <p>
-            <h1>Listar Produto</h1>
+            <h1>Lista de Produto</h1>
         </p>
         <table class="table">
         <thead>
@@ -17,7 +17,7 @@
                 <th>Imagem</th>
                 <th>Nome</th>
                 <th>Descrição</th>
-                <th>Votos</th>
+                <th>Avalicações</th>
             </tr>
         </thead>
         <tbody>
@@ -32,7 +32,12 @@
 
                 <td th:text="${product.description}" style="word-wrap: break-word; max-width: 500px; text-align:justify; padding-left: 25px"></td>
 
-                <td style="padding-left: 25px">Votos</td>
+                <td style="padding-left: 35px">
+                    <div th:text="'Positivas: ' + ${positivos[product.id]}"></div>
+                    <p>
+                        <div th:text="'Negativas: ' + ${negativos[product.id]}"></div>
+                    </p>
+                </td>
             </tr>
         </tbody>
     </table>
