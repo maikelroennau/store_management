@@ -19,6 +19,8 @@ public class AdminProdutoController {
     
     @Autowired
     ProductRepository productRepository;
+    
+    @Autowired
     CommentRepository commentRepository;
 
     private ModelMapper mapper = new ModelMapper();
