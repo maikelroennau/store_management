@@ -108,6 +108,6 @@ public class UserController {
     
     @PostMapping(value="/login")
     public String login(){
-        return "redirect:/produto";
+        return "redirect:/produtos";
     }
 }

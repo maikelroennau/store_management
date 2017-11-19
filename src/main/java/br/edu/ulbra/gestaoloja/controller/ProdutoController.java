@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 @Controller
-@RequestMapping("/produto")
+@RequestMapping("/produtos")
 public class ProdutoController {
 
     @Autowired
@@ -23,12 +23,12 @@ public class ProdutoController {
 
     @GetMapping("/{produtoId}")
     public String listarProduto(@PathVariable Integer produtoId) {
-        return "listarProduto";
+        return "listarProdutos";
     }
 
     @GetMapping
     public ModelAndView listarProdutos() {
-        ModelAndView mv = new ModelAndView("listarProduto");
+        ModelAndView mv = new ModelAndView("listarProdutos");
         List<Product> produtos = (List<Product>) productRepository.findAll();
         mv.addObject("products", produtos);
         return mv;

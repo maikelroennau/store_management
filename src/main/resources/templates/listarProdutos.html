@@ -11,21 +11,30 @@
         <p>
             <h1>Listar Produto</h1>
         </p>
-        
         <table class="table">
-            <thead>
-                <tr>
-                    <th>Imagem</th>
-                    <th>Descrição</th>
-                    <!-- <th>Votos</th> -->
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="product: ${products}">
-                    <td><img th:src="@{ /{path} (path=${product.imagePath}) }"></img></td>
-                    <td th:text="${product.description}"></td>
-                </tr>
-            </tbody>
-        </table>
+        <thead>
+            <tr>
+                <th>Imagem</th>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Votos</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="product: ${products}">
+                <td style="margin-left: 15px">
+                    <a th:href="@{ /admin/produtos/{id}(id=${product.id}) }" class="btn">
+                        <img th:src="@{ /{path} (path=${product.imagePath}) }" width="75" height="75" ></img>
+                    </a>
+                </td>
+                
+                <td th:text="${product.name}" style="padding-left: 25px" ></td>
+
+                <td th:text="${product.description}" style="word-wrap: break-word; max-width: 500px; text-align:justify; padding-left: 25px"></td>
+
+                <td style="padding-left: 25px">Votos</td>
+            </tr>
+        </tbody>
+    </table>
     </body>
 </html>
