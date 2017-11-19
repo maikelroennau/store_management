@@ -21,16 +21,20 @@ public class ProdutoController {
 
     private ModelMapper mapper = new ModelMapper();
 
-    @GetMapping("/{produtoId}")
-    public String listarProduto(@PathVariable Integer produtoId) {
-        return "listarProdutos";
-    }
-
     @GetMapping
     public ModelAndView listarProdutos() {
         ModelAndView mv = new ModelAndView("listarProdutos");
         List<Product> produtos = (List<Product>) productRepository.findAll();
         mv.addObject("products", produtos);
+        return mv;
+    }
+    
+    
+    @GetMapping("/{produtoId}")
+    public ModelAndView listarProduto(@PathVariable(name="produtoId") Long id) {
+        ModelAndView mv = new ModelAndView("detalhesProduto");
+        Product produto = productRepository.findOne(id);
+        mv.addObject("product", produto);
         return mv;
     }
 }

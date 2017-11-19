@@ -8,6 +8,7 @@
 
 <body>
     <h1>Comentários</h1>
+    <p><a th:href="@{ /admin/produtos/{id}(id=${product.id}) }" class="btn" style="padding-left: 25px">Voltar</a></p>
     <div th:if="${error}">
         <div>
             <span th:text="${error}" /><br />
@@ -16,9 +17,9 @@
     <table class="table">
         <thead>
             <tr>
-                <th>User</th>
-                <th>Comment</th>
-                <th>Evaluation</th>
+                <th>Usuário</th>
+                <th>Comentário</th>
+                <th>Avaliação</th>
             </tr>
         </thead>
         <tbody>
@@ -26,11 +27,10 @@
                 <td th:text="${user_comment.user.name}"></td>
                 <td th:text="${user_comment.comment}" style="padding-left: 25px"></td>
                 <td th:text="${user_comment.liked}" style="padding-left: 25px"></td>
-                <td><a th:href="@{ /admin/produtos/{id}/comentarios/excluir(id=${user_comment.id}) }" class="btn btn-danger">Excluir</a></td>
+                <td><a th:href="@{ /admin/produtos/{id}/comentarios/excluir(id=${user_comment.id}) }" class="btn btn-danger" style="padding-left: 25px">Excluir</a></td>
             </tr>
         </tbody>
     </table>
-    <p><a th:href="@{ /admin/produtos/{id}(id=${product.id}) }" class="btn" style="padding-left: 25px">Voltar</a></p>
 </body>
 
 </html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Detalhes</title>
+</head>
+
+<body>
+    <p>
+        <h1>Detalhes do produto</h1>
+    </p>
+
+    <p>
+        <a th:href="@{ /produtos }" class="btn" style="padding-left: 25px">Voltar</a>
+    </p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Imagem</th>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Votos</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:object="${product}">
+                <td style="margin-left: 15px">
+                    <img th:src="@{ /{path} (path=${product.imagePath}) }" width="75" height="75"></img>
+                </td>
+
+                <td th:text="${product.name}" style="padding-left: 25px"></td>
+
+                <td th:text="${product.description}" style="word-wrap: break-word; max-width: 500px; text-align:justify; padding-left: 25px"></td>
+
+                <td style="padding-left: 25px">Votos</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p>
+        <h3>Comentários</h3>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Usuário</th>
+                <th>Comentário</th>
+                <th>Avaliação</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="user_comment: ${product.comments}">
+                <td th:text="${user_comment.user.name}"></td>
+                <td th:text="${user_comment.comment}" style="padding-left: 25px"></td>
+                <td th:text="${user_comment.liked}" style="padding-left: 25px"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>
