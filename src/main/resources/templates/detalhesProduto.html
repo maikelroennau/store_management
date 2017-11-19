@@ -47,8 +47,11 @@
         <h3>Comentários</h3>
     </p>
     
-    <form class="form-inline" method="POST" action="#" id="comment_new" th:object="${comment}" th:action="@{/produtos/{id}/comentario}">
+    <form class="form-inline" method="POST" action="#" id="comment_new" th:object="${commentInput}" th:action="@{/produtos/comentario}">
         <input type="hidden" th:field="*{id}" />
+        <input type="hidden" th:field="*{product}" />
+        <input type="hidden" th:field="*{user}" />
+               
         <table>
             <tr>
                 <td>

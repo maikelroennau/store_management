@@ -6,6 +6,8 @@ import br.edu.ulbra.gestaoloja.model.Comment;
 import br.edu.ulbra.gestaoloja.model.Product;
 import br.edu.ulbra.gestaoloja.repository.CommentRepository;
 import br.edu.ulbra.gestaoloja.repository.ProductRepository;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,7 +77,10 @@ public class ProdutoController {
         
         Product produto = productRepository.findOne(id);
         mv.addObject("product", produto);
-        mv.addObject("comment", new CommentInput());
+        
+        CommentInput commentInput = new CommentInput();
+        commentInput.setProduct(produto);
+        mv.addObject("commentInput", commentInput);
         
         Integer positivos = 0;
         
@@ -92,10 +97,12 @@ public class ProdutoController {
         return mv;
     }
     
-    @PostMapping("/{produtoID}/comentario")
+    @PostMapping("/comentario")
     public ModelAndView incluirComentario(CommentInput commentInput) {
         Comment comment = mapper.map(commentInput, Comment.class);
+        comment.setDateTime(new Date());
+        
         commentRepository.save(comment);
-        return new ModelAndView("redirect:/produtos/");
+        return new ModelAndView("redirect:/produtos/" + comment.getProduct().getId());
     }
 }
