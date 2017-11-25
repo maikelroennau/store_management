@@ -30,7 +30,7 @@ public class UserController {
     }
 
     private ModelAndView userForm(UserInput userInput){
-        ModelAndView mv = new ModelAndView("user/new");
+        ModelAndView mv = new ModelAndView("/user/register/new");
         mv.addObject("user", userInput);
         return mv;
     }
@@ -104,10 +104,5 @@ public class UserController {
         User usuario = userRepository.findOne(id);
         userRepository.delete(usuario);
         return new ModelAndView("redirect:/user/?usercreated=true");
-    }
-    
-    @PostMapping(value="/login")
-    public String login(){
-        return "redirect:/produtos";
     }
 }

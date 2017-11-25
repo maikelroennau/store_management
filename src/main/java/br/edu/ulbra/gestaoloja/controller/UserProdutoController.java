@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 @RequestMapping("/produtos")
-public class ProdutoController {
+public class UserProdutoController {
 
     @Autowired
     ProductRepository productRepository;
@@ -34,7 +34,7 @@ public class ProdutoController {
 
     @GetMapping
     public ModelAndView listarProdutos() {
-        ModelAndView mv = new ModelAndView("listarProdutos");
+        ModelAndView mv = new ModelAndView("/user/produtos/index");
         List<Product> produtos = (List<Product>) productRepository.findAll();
         mv.addObject("products", produtos);
         
@@ -73,7 +73,7 @@ public class ProdutoController {
     
     @GetMapping("/{produtoId}")
     public ModelAndView detalharProduto(@PathVariable(name="produtoId") Long id) {
-        ModelAndView mv = new ModelAndView("detalhesProduto");
+        ModelAndView mv = new ModelAndView("/user/produtos/detalhesProduto");
         
         Product produto = productRepository.findOne(id);
         mv.addObject("product", produto);
@@ -103,6 +103,6 @@ public class ProdutoController {
         comment.setDateTime(new Date());
         
         commentRepository.save(comment);
-        return new ModelAndView("redirect:/produtos/" + comment.getProduct().getId());
+        return new ModelAndView("redirect:/user/produtos/" + comment.getProduct().getId());
     }
 }
