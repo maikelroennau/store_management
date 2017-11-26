@@ -25,7 +25,7 @@ public class AdminProdutoController {
 
     private ModelMapper mapper = new ModelMapper();
 
-    @GetMapping("/")
+    @GetMapping
     public ModelAndView listarProdutos(){
         ModelAndView mv = new ModelAndView("admin/produtos/index");
         List<Product> produtos = (List<Product>) productRepository.findAll();

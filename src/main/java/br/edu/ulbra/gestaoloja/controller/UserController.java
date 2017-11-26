@@ -23,7 +23,7 @@ public class UserController {
 
     @GetMapping
     public ModelAndView listUser(){
-        ModelAndView mv = new ModelAndView("user/list");
+        ModelAndView mv = new ModelAndView("/admin/user/list");
         List<User> usuarios = (List<User>) userRepository.findAll();
         mv.addObject("users", usuarios);
         return mv;
@@ -58,7 +58,7 @@ public class UserController {
         User usuario = userRepository.findOne(id);
         UserInput userInput = mapper.map(usuario, UserInput.class);
         ModelAndView mv = this.userForm(userInput);
-        mv.setViewName("user/update");
+        mv.setViewName("/admin/user/update");
         return mv;
     }
 
@@ -74,7 +74,7 @@ public class UserController {
         usuario.setPassword(userInput.getPassword());
         usuario.setName(userInput.getName());
         userRepository.save(usuario);
-        return new ModelAndView("redirect:/user/?usercreated=true");
+        return new ModelAndView("redirect:/admin/user/?usercreated=true");
     }
     
     @GetMapping("/{id}/updatePassword")
@@ -82,7 +82,7 @@ public class UserController {
         User usuario = userRepository.findOne(id);
         UserInput userInput = mapper.map(usuario, UserInput.class);
         ModelAndView mv = this.userForm(userInput);
-        mv.setViewName("user/updatePassword");
+        mv.setViewName("/admin/user/updatePassword");
         return mv;
     }
     
@@ -96,13 +96,13 @@ public class UserController {
         }
         usuario.setPassword(userInput.getPassword());
         userRepository.save(usuario);
-        return new ModelAndView("redirect:/user/?usercreated=true");
+        return new ModelAndView("redirect:/admin/user/?usercreated=true");
     }
 
     @GetMapping("/{id}/delete")
     public ModelAndView deleteUser(@PathVariable(name="id") Long id){
         User usuario = userRepository.findOne(id);
         userRepository.delete(usuario);
-        return new ModelAndView("redirect:/user/?usercreated=true");
+        return new ModelAndView("redirect:/admin/user/?usercreated=true");
     }
 }
