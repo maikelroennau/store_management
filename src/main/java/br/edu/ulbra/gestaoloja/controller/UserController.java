@@ -74,7 +74,7 @@ public class UserController {
         usuario.setPassword(userInput.getPassword());
         usuario.setName(userInput.getName());
         userRepository.save(usuario);
-        return new ModelAndView("redirect:/admin/user/?usercreated=true");
+        return new ModelAndView("redirect:/user/?usercreated=true");
     }
     
     @GetMapping("/{id}/updatePassword")
@@ -96,13 +96,13 @@ public class UserController {
         }
         usuario.setPassword(userInput.getPassword());
         userRepository.save(usuario);
-        return new ModelAndView("redirect:/admin/user/?usercreated=true");
+        return new ModelAndView("redirect:/user/?usercreated=true");
     }
 
     @GetMapping("/{id}/delete")
     public ModelAndView deleteUser(@PathVariable(name="id") Long id){
         User usuario = userRepository.findOne(id);
         userRepository.delete(usuario);
-        return new ModelAndView("redirect:/admin/user/?usercreated=true");
+        return new ModelAndView("redirect:/user/?usercreated=true");
     }
 }
