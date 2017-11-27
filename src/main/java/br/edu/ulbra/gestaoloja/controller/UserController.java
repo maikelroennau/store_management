@@ -1,8 +1,12 @@
 package br.edu.ulbra.gestaoloja.controller;
 
 import br.edu.ulbra.gestaoloja.input.UserInput;
+import br.edu.ulbra.gestaoloja.model.Role;
 import br.edu.ulbra.gestaoloja.model.User;
+import br.edu.ulbra.gestaoloja.repository.RoleRepository;
 import br.edu.ulbra.gestaoloja.repository.UserRepository;
+import br.edu.ulbra.gestaoloja.service.interfaces.UserService;
+import java.util.HashSet;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,13 +15,20 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/user")
 public class UserController {
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
+
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private RoleRepository roleRepository;
 
     private ModelMapper mapper = new ModelMapper();
 
@@ -32,6 +43,7 @@ public class UserController {
     private ModelAndView userForm(UserInput userInput){
         ModelAndView mv = new ModelAndView("/user/register/new");
         mv.addObject("user", userInput);
+        mv.addObject("roles", roleRepository.findAll());
         return mv;
     }
 
@@ -49,10 +61,12 @@ public class UserController {
         }
 
         User user = mapper.map(userInput, User.class);
-        userRepository.save(user);
+        Set<Role> roles = roleRepository.findAllByName("ROLE_USER");
+        user.setRoles(roles);
+        userService.save(user);
         return new ModelAndView("redirect:/");
-    }
-
+    }  
+    
     @GetMapping("/{id}")
     public ModelAndView viewUser(@PathVariable(name="id") Long id){
         User usuario = userRepository.findOne(id);

@@ -6,6 +6,7 @@ import br.edu.ulbra.gestaoloja.model.Comment;
 import br.edu.ulbra.gestaoloja.model.Product;
 import br.edu.ulbra.gestaoloja.repository.CommentRepository;
 import br.edu.ulbra.gestaoloja.repository.ProductRepository;
+import br.edu.ulbra.gestaoloja.service.interfaces.SecurityService;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -29,6 +30,9 @@ public class UserProdutoController {
     
     @Autowired
     CommentRepository commentRepository;
+    
+    @Autowired
+    private SecurityService securityService;
 
     private ModelMapper mapper = new ModelMapper();
 
@@ -37,6 +41,8 @@ public class UserProdutoController {
         ModelAndView mv = new ModelAndView("/user/produtos/index");
         List<Product> produtos = (List<Product>) productRepository.findAll();
         mv.addObject("products", produtos);
+        
+        mv.addObject("loggedUser", securityService.findLoggedInUser());
         
         HashMap<Long, Integer> positivos = new HashMap<>();
         HashMap<Long, Integer> negativos = new HashMap<>();
