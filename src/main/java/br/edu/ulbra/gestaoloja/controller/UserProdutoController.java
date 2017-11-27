@@ -42,8 +42,6 @@ public class UserProdutoController {
         List<Product> produtos = (List<Product>) productRepository.findAll();
         mv.addObject("products", produtos);
         
-        mv.addObject("loggedUser", securityService.findLoggedInUser());
-        
         HashMap<Long, Integer> positivos = new HashMap<>();
         HashMap<Long, Integer> negativos = new HashMap<>();
         
@@ -76,7 +74,6 @@ public class UserProdutoController {
         return mv;
     }
     
-    
     @GetMapping("/{produtoId}")
     public ModelAndView detalharProduto(@PathVariable(name="produtoId") Long id) {
         ModelAndView mv = new ModelAndView("/user/produtos/detalhesProduto");
@@ -107,8 +104,9 @@ public class UserProdutoController {
     public ModelAndView incluirComentario(CommentInput commentInput) {
         Comment comment = mapper.map(commentInput, Comment.class);
         comment.setDateTime(new Date());
+        comment.setUser(securityService.findLoggedInUser());
         
         commentRepository.save(comment);
-        return new ModelAndView("redirect:/user/produtos/" + comment.getProduct().getId());
+        return new ModelAndView("redirect:/produtos/" + comment.getProduct().getId());
     }
 }
