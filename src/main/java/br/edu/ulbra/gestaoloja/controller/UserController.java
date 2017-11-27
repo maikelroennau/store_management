@@ -61,12 +61,9 @@ public class UserController {
         }
 
         User user = mapper.map(userInput, User.class);
-        Role role = roleRepository.findOne(userInput.getRoleId());
-        Set<Role> roles = new HashSet<>();
-        roles.add(role);
+        Set<Role> roles = roleRepository.findAllByName("ROLE_USER");
         user.setRoles(roles);
         userService.save(user);
-        System.out.println(user);
         return new ModelAndView("redirect:/");
     }  
     

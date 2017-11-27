@@ -30,18 +30,4 @@ public class IndexController {
         ModelAndView mv = new ModelAndView("/login");
         return mv;
     }
-    
-    @PostMapping(value="/login")
-    public ModelAndView login(UserInput userInput){
-        ModelAndView mv = new ModelAndView();
-        if (userInput.getUsername() == null || userInput.getPassword() == null){
-            mv.addObject("loginError", true);
-            mv.setViewName("/login");
-        } else {
-            securityService.autologin(userInput.getUsername(), userInput.getPassword());
-            mv.setViewName("redirect:/produtos");
-        }
-        
-        return mv;
-    }
 }
