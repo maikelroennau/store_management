@@ -63,10 +63,14 @@
                 
                 <td style="padding-left: 25px">
                     <p>
-                        <input type="radio" name="comment_status" id="comment_status" value="true" th:checked="*{liked}"/> Gostei
-                        <p>
-                            <input type="radio" name="comment_status" id="comment_status_2" value="false" th:checked="*{liked}"/> Não gostei
-                        </p>
+                        <select th:field="*{liked}" class="form-control">
+                            <option th:field="*{liked}" th:value="${true}" >Gostei</option>
+                            <option th:field="*{liked}" th:value="${false}" >Não gostei</option>
+                        </select>
+                        
+<!--                        <select th:field="*{roleId}" class="form-control">
+                            <option th:each="role : ${roles}" th:field="*{roleId}" th:value="${role.id}" th:text="${role.name}"></option>
+                        </select>-->
                     </p>
                 </td>
             </tr>
@@ -84,6 +88,7 @@
                 <th>Usuário</th>
                 <th>Comentário</th>
                 <th>Avaliação</th>
+                <th>Data e hora</th>
             </tr>
         </thead>
         <tbody>
@@ -92,6 +97,7 @@
                 <td th:text="${user_comment.comment}" style="padding-left: 25px"></td>
                 <td th:if="${user_comment.liked}" style="padding-left: 25px">Positiva</td>
                 <td th:if="${!user_comment.liked}" style="padding-left: 25px">Negativa</td>
+                <td th:text="${user_comment.dateTime}" style="padding-left: 25px"></td>
             </tr>
         </tbody>
     </table>
