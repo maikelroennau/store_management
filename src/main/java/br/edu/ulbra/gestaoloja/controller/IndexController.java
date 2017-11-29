@@ -39,6 +39,6 @@ public class IndexController {
     @GetMapping("/files/{fileName}")
     @ResponseBody
     public FileSystemResource getFile(@PathVariable("fileName") String fileName) {
-        return new FileSystemResource(uploadFilePath + "/" + fileName + ".png"); // + ".jpg" fixes the problem
+        return new FileSystemResource(uploadFilePath + "/" + fileName); // + ".jpg" fixes the problem
     }
 }
