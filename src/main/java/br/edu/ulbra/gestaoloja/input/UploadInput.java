@@ -1,4 +1,4 @@
-package br.edu.ulbra.gestaoloja.demos.input;
+package br.edu.ulbra.gestaoloja.input;
 
 import org.springframework.web.multipart.MultipartFile;
 

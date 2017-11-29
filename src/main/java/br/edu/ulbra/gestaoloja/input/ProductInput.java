@@ -13,7 +13,7 @@ import java.util.Set;
  * @author Maikel Maciel Rönnau
  */
 public class ProductInput {
-    
+
     private Long id;
     private String name;
     private String description;

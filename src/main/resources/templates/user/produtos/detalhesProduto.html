@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-    <title>Detalhes</title>
-</head>
+    <head>
+        <title>Detalhes</title>
+    </head>
 
-<body>
-    <p>
+    <body>
+        <p>
         <h1>Detalhes do produto</h1>
     </p>
 
@@ -26,7 +26,7 @@
         <tbody>
             <tr th:object="${product}">
                 <td style="margin-left: 15px">
-                    <img th:src="@{ /{path} (path=${product.imagePath}) }" width="75" height="75"></img>
+                    <img th:src="@{ /files/{image} (image=${product.imagePath}) }" width="75" height="75"></img>
                 </td>
 
                 <td th:text="${product.name}" style="padding-left: 25px"></td>
@@ -36,7 +36,7 @@
                 <td style="padding-left: 35px">
                     <div th:text="'Positivas: ' + ${positivos}"></div>
                     <p>
-                        <div th:text="'Negativas: ' + ${negativos}"></div>
+                    <div th:text="'Negativas: ' + ${negativos}"></div>
                     </p>
                 </td>
             </tr>
@@ -44,63 +44,63 @@
     </table>
 
     <p>
-        <h3>Comentários</h3>
-    </p>
-    
-    <form class="form-inline" method="POST" action="#" id="comment_new" th:object="${commentInput}" th:action="@{/produtos/comentario}">
-        <input type="hidden" th:field="*{id}" />
-        <input type="hidden" th:field="*{product}" />
-        <input type="hidden" th:field="*{user}" />
-               
-        <table>
-            <tr>
-                <td>
-                    <p>
-                        <textarea name="comentario" form="comment_new" class="form-control" placeholder="Comentário" th:field="*{comment}"
-                            rows="4" cols="85" style="word-wrap: break-word; text-align:justify;"></textarea>
-                    </p>
-                </td>
-                
-                <td style="padding-left: 25px">
-                    <p>
-                        <select th:field="*{liked}" class="form-control">
-                            <option th:field="*{liked}" th:value="${true}" >Gostei</option>
-                            <option th:field="*{liked}" th:value="${false}" >Não gostei</option>
-                        </select>
-                        
-<!--                        <select th:field="*{roleId}" class="form-control">
-                            <option th:each="role : ${roles}" th:field="*{roleId}" th:value="${role.id}" th:text="${role.name}"></option>
-                        </select>-->
-                    </p>
-                </td>
-            </tr>
-            <tr>
-                <td align="right">
-                    <button type="submit" class="btn btn-primary">Commentar</button>
-                </td>
-            </tr>
-        </table>
-    </form>
-    
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Usuário</th>
-                <th>Comentário</th>
-                <th>Avaliação</th>
-                <th>Data e hora</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="user_comment: ${product.comments}">
-                <td th:text="${user_comment.user.name}"></td>
-                <td th:text="${user_comment.comment}" style="padding-left: 25px"></td>
-                <td th:if="${user_comment.liked}" style="padding-left: 25px">Positiva</td>
-                <td th:if="${!user_comment.liked}" style="padding-left: 25px">Negativa</td>
-                <td th:text="${user_comment.dateTime}" style="padding-left: 25px"></td>
-            </tr>
-        </tbody>
+    <h3>Comentários</h3>
+</p>
+
+<form class="form-inline" method="POST" action="#" id="comment_new" th:object="${commentInput}" th:action="@{/produtos/comentario}">
+    <input type="hidden" th:field="*{id}" />
+    <input type="hidden" th:field="*{product}" />
+    <input type="hidden" th:field="*{user}" />
+
+    <table>
+        <tr>
+            <td>
+                <p>
+                    <textarea name="comentario" form="comment_new" class="form-control" placeholder="Comentário" th:field="*{comment}"
+                              rows="4" cols="85" style="word-wrap: break-word; text-align:justify;"></textarea>
+                </p>
+            </td>
+
+            <td style="padding-left: 25px">
+                <p>
+                    <select th:field="*{liked}" class="form-control">
+                        <option th:field="*{liked}" th:value="${true}" >Gostei</option>
+                        <option th:field="*{liked}" th:value="${false}" >Não gostei</option>
+                    </select>
+
+                    <!--                        <select th:field="*{roleId}" class="form-control">
+                                                <option th:each="role : ${roles}" th:field="*{roleId}" th:value="${role.id}" th:text="${role.name}"></option>
+                                            </select>-->
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">
+                <button type="submit" class="btn btn-primary">Commentar</button>
+            </td>
+        </tr>
     </table>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Usuário</th>
+            <th>Comentário</th>
+            <th>Avaliação</th>
+            <th>Data e hora</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="user_comment: ${product.comments}">
+            <td th:text="${user_comment.user.name}"></td>
+            <td th:text="${user_comment.comment}" style="padding-left: 25px"></td>
+            <td th:if="${user_comment.liked}" style="padding-left: 25px">Positiva</td>
+            <td th:if="${!user_comment.liked}" style="padding-left: 25px">Negativa</td>
+            <td th:text="${user_comment.dateTime}" style="padding-left: 25px"></td>
+        </tr>
+    </tbody>
+</table>
 </body>
 
 </html>

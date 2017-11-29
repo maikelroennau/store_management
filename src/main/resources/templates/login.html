@@ -5,16 +5,16 @@
     </head>
     <body>
         <p>
-            <h1>Gestão Loja</h1>
+        <h1>Gestão Loja</h1>
+    </p>
+
+    <form action="/login" method="post" >
+        <input type="text" title="username" name="username" placeholder="username" />
+        <p>
+            <input type="password" title="password" name="password" placeholder="password" />
+            <button type="submit" class="btn">Login</button>
         </p>
-        
-        <form action="/login" method="post" >
-            <input type="text" title="username" name="username" placeholder="username" />
-            <p>
-                <input type="password" title="password" name="password" placeholder="password" />
-                <button type="submit" class="btn">Login</button>
-            </p>
-            <p><a href="/user/new">Cadastrar</a></p>
-        </form>
-    </body>
+        <p><a href="/user/new">Cadastrar</a></p>
+    </form>
+</body>
 </html>
