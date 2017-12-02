@@ -29,7 +29,8 @@
             <tr th:each="user_comment: ${product.comments}">
                 <td th:text="${user_comment.user.name}"></td>
                 <td th:text="${user_comment.comment}" style="padding-left: 25px"></td>
-                <td th:text="${user_comment.liked}" style="padding-left: 25px"></td>
+                <td th:if="${user_comment.liked}" style="padding-left: 25px">Positiva</td>
+                <td th:if="${!user_comment.liked}" style="padding-left: 25px">Negativa</td>
                 <td><a th:href="@{ /admin/produtos/{id}/comentarios/excluir(id=${user_comment.id}) }" class="btn btn-danger" style="padding-left: 25px">Excluir</a></td>
             </tr>
         </tbody>
