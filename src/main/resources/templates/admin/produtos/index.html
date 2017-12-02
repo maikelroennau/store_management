@@ -1,53 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8" />
-    <title>Gestão Loja</title>
-</head>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Gestão Loja</title>
+    </head>
 
-<body>
-    <p>
-        <a href="/admin/produtos/">Produtos</a> | <a href="/user">Usuários</a> | <a href="/logout">Sair</a>
-    </p>
+    <body>
+        <p>
+            <a href="/admin/produtos/">Produtos</a> | <a href="/user">Usuários</a> | <a href="/logout">Sair</a>
+        </p>
 
-    <p>
+        <p>
         <h1>Administração de produtos e usuários</h1>
     </p>
 
     <p>
-        <h4><a href="/admin/produtos/novo">Cadastrar produto</a></h4>
-    </p>
-    
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Imagem</th>
-                <th>Nome</th>
-                <th>Descrição</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="product: ${products}">
-                <td style="margin-left: 15px">
-                    <a th:href="@{ /admin/produtos/{id}(id=${product.id}) }" class="btn">
-                        <img th:src="@{ /{path} (path=${product.imagePath}) }" width="75" height="75" ></img>
-                    </a>
-                </td>
-                
-                <td th:text="${product.name}" style="padding-left: 25px" ></td>
+    <h4><a href="/admin/produtos/novo">Cadastrar produto</a></h4>
+</p>
 
-                <td th:text="${product.description}" style="word-wrap: break-word; max-width: 500px; text-align:justify; padding-left: 25px"></td>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Imagem</th>
+            <th>Nome</th>
+            <th>Descrição</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="product: ${products}">
+            <td style="margin-left: 15px">
+                <a th:href="@{ /admin/produtos/{id}(id=${product.id}) }" class="btn">
+                    <img th:src="@{ /files/{image}(image=${product.imagePath}) }" width="75" height="75" ></img>
+                </a>
+            </td>
 
-                <td>
-                    <a th:href="@{ /admin/produtos/{id}(id=${product.id}) }" class="btn" style="padding-left: 25px">Editar</a>
-                    <p>
-                        <a th:href="@{ /admin/produtos/{id}/excluir(id=${product.id}) }" class="btn btn-danger" style="padding-left: 25px">Excluir</a>
-                    </p>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+            <td th:text="${product.name}" style="padding-left: 25px" ></td>
+
+            <td th:text="${product.description}" style="word-wrap: break-word; max-width: 500px; text-align:justify; padding-left: 25px"></td>
+
+            <td>
+                <a th:href="@{ /admin/produtos/{id}(id=${product.id}) }" class="btn" style="padding-left: 25px">Editar</a>
+                <p>
+                    <a th:href="@{ /admin/produtos/{id}/excluir(id=${product.id}) }" class="btn btn-danger" style="padding-left: 25px">Excluir</a>
+                </p>
+            </td>
+        </tr>
+    </tbody>
+</table>
 </body>
 
 </html>

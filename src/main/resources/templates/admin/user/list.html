@@ -10,24 +10,24 @@
         </p>
         <h1>Lista de usuários</h1>
         <p>
-            <h4><a href="/user/new">Cadastrar usuário</a></h4>
-        </p>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Nome</th>
-                    <th>Usuário</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="user: ${users}">
-                    <td th:text="${user.name}"></td>
-                    <td th:text="${user.username}" style="padding-left: 25px"></td>
-                    <td><a th:href="@{ /user/{id}(id=${user.id}) }" class="btn" style="padding-left: 25px">Editar</a> | </td>
-                    <td><a th:href="@{ /user/{id}/delete(id=${user.id}) }" class="btn btn-danger">Excluir</a> | </td>
-                    <td><a th:href="@{ /user/{id}/updatePassword(id=${user.id}) }" class="btn btn-danger">Atualizar senha</a></td>
-                </tr>
-            </tbody>
-        </table>
-    </body>
+        <h4><a href="/user/new">Cadastrar usuário</a></h4>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Usuário</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="user: ${users}">
+                <td th:text="${user.name}"></td>
+                <td th:text="${user.username}" style="padding-left: 25px"></td>
+                <td><a th:href="@{ /user/{id}(id=${user.id}) }" class="btn" style="padding-left: 25px">Editar</a> | </td>
+                <td><a th:href="@{ /user/{id}/delete(id=${user.id}) }" class="btn btn-danger">Excluir</a> | </td>
+                <td><a th:href="@{ /user/{id}/updatePassword(id=${user.id}) }" class="btn btn-danger">Atualizar senha</a></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
 </html>

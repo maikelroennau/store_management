@@ -14,7 +14,7 @@ import java.util.Date;
  * @author Maikel Maciel Rönnau
  */
 public class CommentInput {
-    
+
     private Long id;
     private Boolean liked;
     private String comment;

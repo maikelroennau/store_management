@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8" />
-    <title>Comentários</title>
-</head>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Comentários</title>
+    </head>
 
-<body>
-    <p>
+    <body>
+        <p>
         <h1>Comentários</h1>
     </p>
-    
+
     <p><a th:href="@{ /admin/produtos/{id}(id=${product.id}) }" class="btn" style="padding-left: 25px">Voltar</a></p>
     <div th:if="${error}">
         <div>

@@ -9,9 +9,9 @@
             <a href="/logout">Sair</a>
         </div>
         <p>
-            <h1>Lista de Produto</h1>
-        </p>
-        <table class="table">
+        <h1>Lista de Produto</h1>
+    </p>
+    <table class="table">
         <thead>
             <tr>
                 <th>Imagem</th>
@@ -24,10 +24,10 @@
             <tr th:each="product: ${products}">
                 <td style="margin-left: 15px">
                     <a th:href="@{ /produtos/{id}(id=${product.id}) }" class="btn">
-                        <img th:src="@{ /{path} (path=${product.imagePath}) }" width="75" height="75" ></img>
-                    </a>
+                        <img th:src="@{ /files/{image}(image=${product.imagePath}) }" width="75" height="75" ></img>
+                    </a> 
                 </td>
-                
+
                 <td th:text="${product.name}" style="padding-left: 25px" ></td>
 
                 <td th:text="${product.description}" style="word-wrap: break-word; max-width: 500px; text-align:justify; padding-left: 25px"></td>
@@ -35,11 +35,11 @@
                 <td style="padding-left: 35px">
                     <div th:text="'Positivas: ' + ${positivos[product.id]}"></div>
                     <p>
-                        <div th:text="'Negativas: ' + ${negativos[product.id]}"></div>
+                    <div th:text="'Negativas: ' + ${negativos[product.id]}"></div>
                     </p>
                 </td>
             </tr>
         </tbody>
     </table>
-    </body>
+</body>
 </html>

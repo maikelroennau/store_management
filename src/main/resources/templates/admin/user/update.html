@@ -6,24 +6,24 @@
     </head>
     <body>
         <p>
-            <h1>Update User</h1>
-        </p>
+        <h1>Update User</h1>
+    </p>
 
-        <div th:if="${error}">
-            <div>
-                <span th:text="${error}" /><br />
-            </div>
+    <div th:if="${error}">
+        <div>
+            <span th:text="${error}" /><br />
         </div>
-        <form class="form-inline" method="POST" action="#" th:object="${user}" th:action="@{/user/{id}(id=${user.id})}">
-            <input type="hidden" th:field="*{id}"/>
-            <p><input type="text" class="form-control" placeholder="E-Mail" th:field="*{username}"/></p>
-            <p><input type="text" class="form-control" placeholder="Name" th:field="*{name}"/></p>
-            <!--<p><input type="password" class="form-control" placeholder="Password" th:field="*{password}"/></p>-->
-            <p>
-                <!--<input type="password" class="form-control" placeholder="PasswordConfirm" th:field="*{passwordConfirm}"/>-->
-                <button type="submit" class="btn btn-primary">Atualizar</button>
-            </p>
-            <p><a href="/user/?usercreated=true" class="button">Cancelar</a></p>
-        </form>
-    </body>
+    </div>
+    <form class="form-inline" method="POST" action="#" th:object="${user}" th:action="@{/user/{id}(id=${user.id})}">
+        <input type="hidden" th:field="*{id}"/>
+        <p><input type="text" class="form-control" placeholder="E-Mail" th:field="*{username}"/></p>
+        <p><input type="text" class="form-control" placeholder="Name" th:field="*{name}"/></p>
+        <!--<p><input type="password" class="form-control" placeholder="Password" th:field="*{password}"/></p>-->
+        <p>
+            <!--<input type="password" class="form-control" placeholder="PasswordConfirm" th:field="*{passwordConfirm}"/>-->
+            <button type="submit" class="btn btn-primary">Atualizar</button>
+        </p>
+        <p><a href="/user/?usercreated=true" class="button">Cancelar</a></p>
+    </form>
+</body>
 </html>
