@@ -107,7 +107,7 @@ public class UserController {
             return mv;
         }
         usuario.setPassword(userInput.getPassword());
-        userRepository.save(usuario);
+        userService.save(usuario);
         return new ModelAndView("redirect:/user/?usercreated=true");
     }
 
